@@ -162,6 +162,11 @@ int main ( void )
     isRTCExpired = true;
     isUSARTTxComplete = true;
 #endif //SIMULATOR
+    
+    extern char *nameStrPtr;
+    snprintf((char*)uartTxBuffer, MAX_PRINT_LEN,
+             "Author: %s\r\n\r\n", nameStrPtr);
+    printAndWait((char*)uartTxBuffer, &isUSARTTxComplete);
 
     int32_t passCount = 0;
     int32_t failCount = 0;
